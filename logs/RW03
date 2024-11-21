@@ -1,0 +1,52 @@
+p:2.000000
+q:1.000000
+From 0 to 2
+From 2 to 3
+From 3 to 4
+From 4 to 3
+From 3 to 2
+From 2 to 0
+From 0 to 1
+From 1 to 3
+From 3 to 2
+Random Walk from Node 0: 0 2 3 4 3 2 0 1 3 2 
+From 1 to 3
+From 3 to 2
+From 2 to 3
+From 3 to 1
+From 1 to 0
+From 0 to 2
+From 2 to 3
+From 3 to 4
+From 4 to 3
+Random Walk from Node 1: 1 3 2 3 1 0 2 3 4 3 
+From 2 to 3
+From 3 to 1
+From 1 to 0
+From 0 to 1
+From 1 to 0
+From 0 to 2
+From 2 to 3
+From 3 to 4
+From 4 to 3
+Random Walk from Node 2: 2 3 1 0 1 0 2 3 4 3 
+From 3 to 4
+From 4 to 3
+From 3 to 4
+From 4 to 3
+From 3 to 1
+From 1 to 3
+From 3 to 2
+From 2 to 0
+From 0 to 1
+Random Walk from Node 3: 3 4 3 4 3 1 3 2 0 1 
+From 4 to 3
+From 3 to 2
+From 2 to 0
+From 0 to 2
+From 2 to 0
+From 0 to 2
+From 2 to 3
+From 3 to 1
+From 1 to 0
+Random Walk from Node 4: 4 3 2 0 2 0 2 3 1 0 

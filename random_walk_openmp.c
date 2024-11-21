@@ -3,9 +3,10 @@
 #include <time.h>
 #include <math.h>
 
-#define MAX_NODES 100  // Define max nodes for the graph
-#define MAX_EDGES 1000 // Define max edges for the graph
+#define MAX_NODES 1000  // Define max nodes for the graph
+#define MAX_EDGES 10000 // Define max edges for the graph
 #define WALK_LENGTH 10 // Length of each walk
+#define N 10	       // Number of random walks
 
 
 typedef struct
@@ -95,9 +96,11 @@ void print_graph(Graph *graph) {
 // Choose a neighbor based on Node2Vec biases (simple approach)
 int choose_next_node(Graph *graph, int curr_node, int prev_node, double p, double q)
 {
-	printf("From %d ", curr_node);
+//	printf("From %d ", curr_node);
 	int next_node = -1;
 	int num_neighbors = graph->nodes[curr_node].num_edges;
+	if ( num_neighbors == 0 )
+		return curr_node;
 	int *neighbors = graph->nodes[curr_node].edges;
 	// Normalizing constant
 	double Z = 0.0;
@@ -144,7 +147,7 @@ int choose_next_node(Graph *graph, int curr_node, int prev_node, double p, doubl
 	{
 		if ( r >= low && r <= weights[i] )
 		{
-			printf("to %d\n", neighbors[i]);
+//			printf("to %d\n", neighbors[i]);
 			return neighbors[i];
 		}
 	}
@@ -180,29 +183,33 @@ int main()
 	srand(time(NULL));  // Initialize random seed
 
 	Graph graph;
-	initialize_graph(&graph, 5);
-
-	 // Adding edges to the graph
-	add_edge(&graph, 0, 1);
-	add_edge(&graph, 0, 2);
-	add_edge(&graph, 1, 3);
-	add_edge(&graph, 2, 3);
-	add_edge(&graph, 3, 4);
-
+	// Loading from file
+	// TODO: Internally count before adding
+	initialize_graph(&graph, 348);
+	int num_nodes = read_edges_from_file(&graph, "0.edges");
+	if ( num_nodes == -1 )
+	{
+		return EXIT_FAILURE;
+	}
 
 	int walk[WALK_LENGTH];
 
 	double p = 2.0, q = 1.0;
 	printf("p:%f\nq:%f\n", p, q);
+	// print_graph(&graph);
+	int i = 0;
+	generate_random_walk(&graph, i, walk, WALK_LENGTH, p, q);
+	printf("Random Walk from Node %d: ", i);
+	print_walk(walk, WALK_LENGTH);
 
 	// Generate multiple random walks
-	#pragma omp parallel for
-	for (int i = 0; i < graph.num_nodes; i++) 
-	{
-	     generate_random_walk(&graph, i, walk, WALK_LENGTH, p, q);
-	     printf("Random Walk from Node %d: ", i);
-	     print_walk(walk, WALK_LENGTH);
-	}
+	// #pragma omp parallel for
+	// for (int i = 0; i < graph.num_nodes; i++) 
+	// {
+	//      generate_random_walk(&graph, i, walk, WALK_LENGTH, p, q);
+	//      printf("Random Walk from Node %d: ", i);
+	//      print_walk(walk, WALK_LENGTH);
+	// }
 
 	return 0;
 }

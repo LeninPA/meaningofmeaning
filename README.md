@@ -12,3 +12,5 @@ universal structure](https://openresearch-repository.anu.edu.au/items/3bf3f8f5-4
 - [When do languages use the same word for different meanings? The Goldilocks principle in colexification](https://repositori.upf.edu/handle/10230/56229)
 - [At the interface of Algebra and Statistics](https://www.math3ma.com/blog/at-the-interface-of-algebra-and-statistics)
 - [The Socioemotional Foundations of Suicide: A Microsociological View of Durkheim’s Suicide](https://journals.sagepub.com/doi/10.1177/0735275114558633)
+## Data
+- http://www.lrec-conf.org/proceedings/lrec2014/pdf/220_Paper.pdf

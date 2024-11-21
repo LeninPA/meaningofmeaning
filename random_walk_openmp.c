@@ -203,13 +203,15 @@ int main()
 	print_walk(walk, WALK_LENGTH);
 
 	// Generate multiple random walks
-	#pragma omp parallel for
-	for (int i = 0; i < graph.num_nodes; i++) 
+	#pragma omp parallel for collapse(2)
+	for (int h = 0; h < N ; h++)
 	{
-	     generate_random_walk(&graph, i, walk, WALK_LENGTH, p, q);
-	     printf("Random Walk from Node %d: ", i);
-	     print_walk(walk, WALK_LENGTH);
+		for (int i = 0; i < graph.num_nodes; i++) 
+		{
+		     generate_random_walk(&graph, i, walk, WALK_LENGTH, p, q);
+		     printf("Random Walk from Node %d: ", i);
+		     print_walk(walk, WALK_LENGTH);
+		}
 	}
-
 	return 0;
 }
